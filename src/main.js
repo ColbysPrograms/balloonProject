@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-//import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer';
+import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer';
 import * as dat from 'dat.gui';
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -14,6 +14,16 @@ renderer.render(scene, camera);
 camera.position.set(50, 15, 5);
 
 const controls = new OrbitControls(camera, renderer.domElement);
+
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize(window.innerWidth, window.innerHeight);
+labelRenderer.domElement.style.position = 'absolute';
+labelRenderer.domElement.style.top = '0px';
+labelRenderer.domElement.style.pointerEvents = 'none';
+document.body.appendChild(labelRenderer.domElement);
+
+const axesHelper = new THREE.AxesHelper(20);
+scene.add(axesHelper);
 
 const cylinderGeometry = new THREE.CylinderGeometry(5, 5, 5);
 const cylinderMaterial = new THREE.MeshStandardMaterial({ color: 0xFF6347 });
@@ -44,38 +54,57 @@ const pointLight = new THREE.PointLight(0xFFFFFF, 100);
 pointLight.position.set(10, 15, 5);
 scene.add(pointLight);
 
+const center = new THREE.Vector3(0, 12, 0);
+const end = new THREE.Vector3(0, 17, 0);
+var radius = center.distanceTo(end);
 scene.background = new THREE.Color(0x1264AC);
 
-//const slider = document.createElement('input');
-//slider.type = 'range';
-//slider.min = '-50';
-//slider.max = '50';
-//slider.value = '0';
-//slider.className = 'slider'
-//slider.id = 'myRange'
-//const sliderContainer = document.createElement('div');
-//sliderContainer.appendChild(slider);
-//const cPointLabel = new CSS2DObject(sliderContainer);
-//scene.add(sliderContainer);
-
-//var radiusChange = slider.value;
-//slider.oninput = function() {
-//  radiusChange = this.value;
-//}
 const gui = new dat.GUI();
-var radiusChange = { radius: 0 };
-//gui.add(sphere.position, "x", -50, 50, 1);
-gui.add(radiusChange, "radius", -0.01, 0.01, 0.001);
+var radiusChange = { radiusChange: 0 };
+gui.add(radiusChange, "radiusChange", -0.01, 0.01, 0.001);
+
+const drdt = document.createElement('p');
+drdt.className = 'derivative';
+drdt.textContent = 'dr/dt = ' + radiusChange.radiusChange;
+const dvdt = document.createElement('p');
+dvdt.className = 'derivative';
+dvdt.textContent = 'dV/dt = ' + radius;
+const dvdr = document.createElement('p');
+dvdr.className = 'derivative';
+dvdr.textContent = 'dV/dr = ';
+const pContainer = document.createElement('div');
+pContainer.appendChild(drdt);
+pContainer.appendChild(dvdt);
+pContainer.appendChild(dvdr);
+const cPointLabel = new CSS2DObject(pContainer);
+cPointLabel.position.set(20, 1, 20);
+scene.add(cPointLabel);
+
+
 const animate = function() {
   requestAnimationFrame(animate);
   controls.update();
   renderer.render(scene, camera);
-  //labelRenderer.render(scene, camera);
-  //sphere.scale += valueOf(radiusChange.radius);
-  if (sphere.scale.x >= 0) {
-    sphere.scale.set(sphere.scale.x + radiusChange.radius, sphere.scale.y + radiusChange.radius, sphere.scale.z + radiusChange.radius);
+  labelRenderer.render(scene, camera);
+  if (sphere.scale.x >= 0.1) {
+    sphere.scale.setScalar(sphere.scale.x + radiusChange.radiusChange);
+    //sphere.scale.set(sphere.scale.x + radiusChange.radiusChange, sphere.scale.y + radiusChange.radiusChange, sphere.scale.z + radiusChange.radiusChange);
+    sphere.position.set(sphere.position.x, sphere.position.y + 5 * radiusChange.radiusChange, sphere.position.z);
   }
+  else {
+    sphere.scale.set(1, 1, 1);
+    sphere.position.set(0, 12, 0);
+  }
+  end.y += radiusChange.radiusChange;
+  radius = center.distanceTo(end);
+  drdt.textContent = 'dr/dt = ' + radiusChange.radiusChange;
+  dvdt.textContent = 'dV/dt = ' + radius;
 };
+//window.addEventListener('resize', function() {
+//  camera.aspect = window.innerWidth / window.innerHeight;
+//  camera.updateProjectionMatrix();
+//  renderer.setSize(window.innerWidth / window.innerHeight);
+//  labelRenderer.setSize(window.innerWidth / window.innerHeight);
+//});
 
 animate();
-
