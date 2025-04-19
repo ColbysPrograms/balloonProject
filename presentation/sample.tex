@@ -3,18 +3,18 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
-\usetheme{SimpleDarkBlue}
+\usetheme{SimplePlus}
 
 \usepackage{hyperref}
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{subcaption}
 
 %----------------------------------------------------------------------------------------
 %    TITLE PAGE
 %----------------------------------------------------------------------------------------
 
 \title{Related Rates}
-\subtitle{with Balloons}
 
 \author{Colby Cox}
 
@@ -22,7 +22,7 @@
 {
     University of Central Arkansas % Your institution for the title page
 }
-\date{April 11, 2025} % Date, can be changed to a custom date
+\date{April 18, 2025} % Date, can be changed to a custom date
 
 %----------------------------------------------------------------------------------------
 %    PRESENTATION SLIDES
@@ -31,110 +31,82 @@
 \begin{document}
 
 \begin{frame}
-    \titlepage
+  \titlepage
 \end{frame}
 
-\iffalse
-\begin{frame}{Bullet Points}
-    \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-    \end{itemize}
+\begin{frame}{Another Example}
+  \begin{center}
+    \includegraphics[scale=0.2]{redBall.png}
+  \end{center}
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}{Blocks of Highlighted Text}
-    In this slide, some important text will be \alert{highlighted} because it's important. Please, don't abuse it.
-
-    \begin{block}{Block}
-        Sample text
-    \end{block}
-
-    \begin{alertblock}{Alertblock}
-        Sample text in red box
-    \end{alertblock}
-
-    \begin{examples}
-        Sample text in green box. The title of the block is ``Examples".
-    \end{examples}
+\begin{frame}{Website Renaissance}
+  \begin{center}
+    \includegraphics[scale=0.1]{website1.png}
+    \includegraphics[scale=0.1]{website2.png}\\
+    \includegraphics[scale=0.1]{website3.png}
+    \includegraphics[scale=0.1]{website5.png}
+  \end{center}
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}{Multiple Columns}
-    \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
-        \column{.45\textwidth} % Left column and width
-        \textbf{Heading}
-        \begin{enumerate}
-            \item Statement
-            \item Explanation
-            \item Example
-        \end{enumerate}
-
-        \column{.45\textwidth} % Right column and width
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-
-    \end{columns}
+\begin{frame}{Designing}
+\centering
+\begin{figure}[h!]
+    \begin{subfigure}{0.4\textwidth}
+      \includegraphics[width=1\textwidth]{whiteboard1.png}
+      \caption*{My initial design for this balloon project}
+    \end{subfigure}
+    \begin{subfigure}{0.4\textwidth}
+      \includegraphics[width=1\textwidth]{whiteboard2.png}
+      \caption*{My design for my CPU Scheduling algorithm}
+    \end{subfigure}
+\end{figure}
 \end{frame}
 
-%------------------------------------------------
-\section{Second Section}
-%------------------------------------------------
 
-\begin{frame}{Table}
-    \begin{table}
-        \begin{tabular}{l l l}
-            \toprule
-            \textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2} \\
-            \midrule
-            Treatment 1         & 0.0003262           & 0.562               \\
-            Treatment 2         & 0.0015681           & 0.910               \\
-            Treatment 3         & 0.0009271           & 0.296               \\
-            \bottomrule
-        \end{tabular}
-        \caption{Table caption}
-    \end{table}
+\begin{frame}{HTML}
+  HTML creates the objects on our website.
+  \centering
+  \begin{figure}
+    \includegraphics[scale=0.12]{emptyHouse.jpg}
+    \caption*{\small You can think of it as an empty house, a place with structure but no decoration.}
+  \end{figure}
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}{Theorem}
-    \begin{theorem}[Mass--energy equivalence]
-        $E = mc^2$
-    \end{theorem}
+\begin{frame}{CSS}
+  CSS customizes our objects from HTML.
+  \centering
+  \begin{figure}
+    \includegraphics[scale=0.04]{decoratedHouse.jpg}
+    \caption*{This decorates our house with color, animations, etc.}
+  \end{figure}
 \end{frame}
 
-%------------------------------------------------
+\begin{frame}{Hosting}
+\centering
+\begin{figure}[h!]
+    \begin{subfigure}{0.4\textwidth}
+      \includegraphics[width=1\textwidth]{neocities.png}
+      \caption*{\large Neocities}
+    \end{subfigure}
+    \begin{subfigure}{0.4\textwidth}
+      \includegraphics[width=1\textwidth]{Github.jpg}
+      \caption*{\large Github Pages}
+    \end{subfigure}
+\end{figure}
 
-\begin{frame}{Figure}
-    Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
-    %\begin{figure}
-    %\includegraphics[width=0.8\linewidth]{test}
-    %\end{figure}
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-    \frametitle{Citation}
-    An example of the \verb|\cite| command to cite within the presentation:\\~
-
-    This statement requires citation \cite{p1}.
+\begin{frame}
+  \center
+  \Huge
+  Questions?
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}{References}
-    \footnotesize
-    \bibliography{reference.bib}
-    \bibliographystyle{apalike}
+\begin{frame}
+  \center
+  \Huge
+  Homework Questions
 \end{frame}
-\fi
-%------------------------------------------------
 
 \end{document}
